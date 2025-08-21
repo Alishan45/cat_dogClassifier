@@ -6,6 +6,11 @@ from streamlit_lottie import st_lottie
 import requests
 
 # =========================
+# MUST be the first Streamlit command
+# =========================
+st.set_page_config(page_title="Cat vs Dog Classifier", page_icon="🐶", layout="wide")
+
+# =========================
 # Utility for loading animations
 # =========================
 def load_lottie_url(url: str):
@@ -15,13 +20,13 @@ def load_lottie_url(url: str):
     return r.json()
 
 # =========================
-# Load Lottie Animations (replace with your own if you like)
+# Load Lottie Animations
 # =========================
 cat_animation = load_lottie_url("https://lottie.host/f34f6b84-c2e3-46df-944d-49e3b63a9b85/QyVb7KydOq.json")
 dog_animation = load_lottie_url("https://lottie.host/67d91758-6f8e-4e69-9965-54f70e3aa10f/dsPkK8Rdp8.json")
 
 # =========================
-# Print TensorFlow version
+# Print TensorFlow version in sidebar
 # =========================
 st.sidebar.success(f"✅ Using TensorFlow {tf.__version__}")
 
@@ -30,7 +35,7 @@ st.sidebar.success(f"✅ Using TensorFlow {tf.__version__}")
 # =========================
 @st.cache_resource
 def load_models():
-    cnn_model = tf.keras.models.load_model("best_model.h5")  # saved CNN
+    cnn_model = tf.keras.models.load_model("best_model.h5")   # saved CNN
     hybrid_model = tf.keras.models.load_model("hybrid_model_n.h5")  # saved CNN+MLP
     return cnn_model, hybrid_model
 
@@ -48,8 +53,6 @@ def preprocess_image(image, target_size=(128, 128)):
 # =========================
 # Streamlit UI
 # =========================
-st.set_page_config(page_title="Cat vs Dog Classifier", page_icon="🐶", layout="wide")
-
 st.title("🐶🐱 CNN vs Hybrid Model Classifier")
 st.markdown("### Upload an image and let AI decide: **Cat or Dog?**")
 
@@ -63,10 +66,9 @@ if uploaded_file is not None:
 
     # Predictions
     cnn_pred = cnn_model.predict(img_array, verbose=0)
-    cnn_class = np.argmax(cnn_pred, axis=1)[0]
-
+    cnn_class = int(cnn_pred[0][0] > 0.5)  # sigmoid → binary
     hybrid_pred = hybrid_model.predict(img_array, verbose=0)
-    hybrid_class = np.argmax(hybrid_pred, axis=1)[0]
+    hybrid_class = int(hybrid_pred[0][0] > 0.5)
 
     class_names = ["Cat", "Dog"]
 
@@ -79,13 +81,13 @@ if uploaded_file is not None:
 
     with col1:
         st.markdown("### 🧠 CNN Model")
-        st.metric("Prediction", class_names[cnn_class], f"{np.max(cnn_pred)*100:.1f}%")
-        st.progress(float(np.max(cnn_pred)))
+        st.metric("Prediction", class_names[cnn_class], f"{cnn_pred[0][0]*100:.1f}%")
+        st.progress(float(cnn_pred[0][0]))
 
     with col2:
         st.markdown("### 🤖 Hybrid CNN+MLP Model")
-        st.metric("Prediction", class_names[hybrid_class], f"{np.max(hybrid_pred)*100:.1f}%")
-        st.progress(float(np.max(hybrid_pred)))
+        st.metric("Prediction", class_names[hybrid_class], f"{hybrid_pred[0][0]*100:.1f}%")
+        st.progress(float(hybrid_pred[0][0]))
 
     # =========================
     # Fun Animations
@@ -95,7 +97,7 @@ if uploaded_file is not None:
 
     if cnn_class == 0 or hybrid_class == 0:  # Cat predicted
         st_lottie(cat_animation, height=250, key="cat")
-    else:  # Dog predicted
+    else:
         st_lottie(dog_animation, height=250, key="dog")
 
 # =========================
