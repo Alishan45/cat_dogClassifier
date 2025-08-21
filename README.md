@@ -42,13 +42,6 @@ The app allows users to **upload images** and see predictions from both models s
 
 ---
 
-## ⚙️ Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/<your-username>/cat-dog-classifier.git
-   cd cat-dog-classifier
-````
 
 2. **Create a virtual environment (Python 3.10/3.11 recommended)**
 
