@@ -25,8 +25,8 @@ def load_lottie_url(url: str):
 # =========================
 # Load Lottie Animations (stable URLs from LottieFiles)
 # =========================
-cat_animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_tutvdkg0.json")
-dog_animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_vs6iwvb0.json")
+cat_animation = load_lottie_url("https://lottie.host/919a4809-ae70-4667-8344-57c1d0febb78/cLYdrmzLE6.json")
+dog_animation = load_lottie_url("https://lottie.host/6681cb9f-d8b1-4a18-8bd4-03352a8353bf/YiGh5vK67F.json")
 
 
 # =========================
