@@ -38,7 +38,7 @@ The app allows users to **upload images** and see predictions from both models s
 ├── requirements.txt      # Dependencies
 ├── README.md             # Project documentation
 
-````
+
 
 ---
 
