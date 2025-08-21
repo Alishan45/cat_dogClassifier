@@ -60,13 +60,14 @@ uploaded_file = st.file_uploader("📂 Upload an image", type=["jpg", "png", "jp
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="📸 Uploaded Image", use_container_width=True)
+    st.image(image, caption="📸 Uploaded Image", use_column_width=True)  # ✅ FIXED
 
     img_array = preprocess_image(image)
 
     # Predictions
     cnn_pred = cnn_model.predict(img_array, verbose=0)
     cnn_class = int(cnn_pred[0][0] > 0.5)  # sigmoid → binary
+
     hybrid_pred = hybrid_model.predict(img_array, verbose=0)
     hybrid_class = int(hybrid_pred[0][0] > 0.5)
 
