@@ -1,0 +1,7 @@
+streamlit
+numpy
+pandas
+scikit-learn
+matplotlib
+Pillow
+# tensorflow==2.18.0   # Stable release (works with Python 3.10/3.11)
