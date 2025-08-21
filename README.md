@@ -100,7 +100,5 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 * Ali Shan – [GitHub](https://github.com/Alishan45) | [LinkedIn](https://www.linkedin.com/in/ali-shan-542246235/)
 
-```
-
 ---
 
