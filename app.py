@@ -14,13 +14,16 @@ st.set_page_config(page_title="Cat vs Dog Classifier", page_icon="🐶", layout=
 # Utility for loading animations
 # =========================
 def load_lottie_url(url: str):
-    r = requests.get(url)
-    if r.status_code != 200:
+    try:
+        r = requests.get(url)
+        if r.status_code != 200:
+            return None
+        return r.json()
+    except Exception:
         return None
-    return r.json()
 
 # =========================
-# Load Lottie Animations
+# Load Lottie Animations (replace with new URLs if needed)
 # =========================
 cat_animation = load_lottie_url("https://lottie.host/f34f6b84-c2e3-46df-944d-49e3b63a9b85/QyVb7KydOq.json")
 dog_animation = load_lottie_url("https://lottie.host/67d91758-6f8e-4e69-9965-54f70e3aa10f/dsPkK8Rdp8.json")
@@ -60,7 +63,7 @@ uploaded_file = st.file_uploader("📂 Upload an image", type=["jpg", "png", "jp
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="📸 Uploaded Image", use_column_width=True)  # ✅ FIXED
+    st.image(image, caption="📸 Uploaded Image", use_column_width=True)
 
     img_array = preprocess_image(image)
 
@@ -97,9 +100,15 @@ if uploaded_file is not None:
     st.subheader("✨ Fun Visualization")
 
     if cnn_class == 0 or hybrid_class == 0:  # Cat predicted
-        st_lottie(cat_animation, height=250, key="cat")
+        if cat_animation:
+            st_lottie(cat_animation, height=250, key="cat")
+        else:
+            st.warning("🐱 Cat animation could not be loaded.")
     else:
-        st_lottie(dog_animation, height=250, key="dog")
+        if dog_animation:
+            st_lottie(dog_animation, height=250, key="dog")
+        else:
+            st.warning("🐶 Dog animation could not be loaded.")
 
 # =========================
 # Sidebar Info
