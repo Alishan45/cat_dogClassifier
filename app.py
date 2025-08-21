@@ -23,10 +23,11 @@ def load_lottie_url(url: str):
         return None
 
 # =========================
-# Load Lottie Animations (replace with new URLs if needed)
+# Load Lottie Animations (stable URLs from LottieFiles)
 # =========================
-cat_animation = load_lottie_url("https://lottie.host/f34f6b84-c2e3-46df-944d-49e3b63a9b85/QyVb7KydOq.json")
-dog_animation = load_lottie_url("https://lottie.host/67d91758-6f8e-4e69-9965-54f70e3aa10f/dsPkK8Rdp8.json")
+cat_animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_tutvdkg0.json")
+dog_animation = load_lottie_url("https://assets10.lottiefiles.com/packages/lf20_vs6iwvb0.json")
+
 
 # =========================
 # Print TensorFlow version in sidebar
