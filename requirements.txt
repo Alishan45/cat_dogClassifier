@@ -1,7 +1,12 @@
-streamlit
-numpy
-pandas
-scikit-learn
-matplotlib
-Pillow
-tensorflow==2.18.0   # Stable release (works with Python 3.10/3.11)
+# Core dependencies
+streamlit==1.37.0
+tensorflow==2.18.0
+numpy==1.26.4
+Pillow==10.3.0
+
+# For animations and effects
+streamlit-lottie==0.0.5
+requests==2.32.3
+
+# Optional (nice UI, emojis, progress bars, etc.)
+altair==5.3.0
