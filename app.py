@@ -30,8 +30,8 @@ st.sidebar.success(f"✅ Using TensorFlow {tf.__version__}")
 # =========================
 @st.cache_resource
 def load_models():
-    cnn_model = tf.keras.models.load_model("cnn_model.h5")  # saved CNN
-    hybrid_model = tf.keras.models.load_model("hybrid_model.h5")  # saved CNN+MLP
+    cnn_model = tf.keras.models.load_model("best_model.h5")  # saved CNN
+    hybrid_model = tf.keras.models.load_model("hybrid_model_n.h5")  # saved CNN+MLP
     return cnn_model, hybrid_model
 
 cnn_model, hybrid_model = load_models()
