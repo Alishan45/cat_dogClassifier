@@ -1,4 +1,3 @@
-```markdown
 # 🐾 Cat vs Dog Classifier (CNN & Hybrid CNN+MLP)  
 
 This project is a **deep learning web app** built with **Streamlit** and **TensorFlow** that classifies images of **cats vs dogs** using two different models:  
@@ -30,7 +29,6 @@ The app allows users to **upload images** and see predictions from both models s
 ---
 
 ## 📂 Project Structure
-```
 
 ├── app.py                # Main Streamlit app
 ├── models/
